@@ -24,7 +24,7 @@ import PlantFacts from './pages/PlantFacts'
 
 
 const httpLink = createHttpLink({
-    uri: '/graphql',
+    uri: 'https://super-duper-spoon-q7p5gp6wqrg7hpr5-3001.app.github.dev/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

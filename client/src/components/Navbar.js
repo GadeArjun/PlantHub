@@ -13,11 +13,11 @@ import Button from '@mui/material/Button';
 import "../App.css"
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import profilePic from "../pages/assets/profilepic.jpeg";
 import Login from "./Login"
 import SignUp from "./SignUp"
-import {Modal} from "@mui/material";
+import { Modal } from "@mui/material";
 import Auth from '../utils/auth';
 
 const pages = ['MyGarden', 'Forum', 'PlantFacts'];
@@ -49,15 +49,16 @@ const Nav = () => {
         //     callback: null,
         // },
         {
-            name:'Dashboard',
+            name: 'Dashboard',
             callback: null,
+            routeTo: '/'
         },
         {
-            name:'SignUp',
+            name: 'SignUp',
             callback: handleSignUpModal,
         },
         {
-            name:'Login',
+            name: 'Login',
             callback: handleLoginModal,
         },
     ];
@@ -82,7 +83,7 @@ const Nav = () => {
     };
 
     return <>
-        <AppBar position="static" style={{background: '#4F5902'}}>
+        <AppBar position="static" style={{ background: '#4F5902' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Link to="/">
@@ -90,13 +91,13 @@ const Nav = () => {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{display: {xs: 'none', md: 'flex'}}}
+                            sx={{ display: { xs: 'none', md: 'flex' } }}
                         >
-                            <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
+                            <img id="logo" src="./images/logo.png" alt="Planthub Logo" />
                         </Typography>
                     </Link>
 
-                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -105,7 +106,7 @@ const Nav = () => {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -122,46 +123,48 @@ const Nav = () => {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: {xs: 'block', md: 'none'},
+                                display: { xs: 'block', md: 'none' },
                             }}
                         >
                             {pages.map((page) => <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>)}
+                                <Link to={`/${page}`} >
+                                    <Typography textAlign="center">{page} </Typography>
+                                </Link>
+                            </MenuItem>)}
                         </Menu>
                     </Box>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{flexGrow: 1, color: 'white', display: {xs: 'flex', md: 'none'}}}
+                        sx={{ flexGrow: 1, color: 'white', display: { xs: 'flex', md: 'none' } }}
                     >
                         <Link to="/" >
-                        <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
+                            <img id="logo" src="./images/logo.png" alt="Planthub Logo" />
                         </Link>
                     </Typography>
                     <Box sx={{
                         flexGrow: 1,
-                        display: {xs: 'none', md: 'flex', justifyContent: "center", gap: "40px"}
+                        display: { xs: 'none', md: 'flex', justifyContent: "center", gap: "40px" }
                     }}>
                         {pages.map((page) => <Button
-                                key={page}
-                                href={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{fontSize: "15px", my: 2, color: '#EBDBAE', display: 'block'}}
-                            >
-                                {page}
-                            </Button>)}
+                            key={page}
+                            href={`/${page}`}
+                            onClick={handleCloseNavMenu}
+                            sx={{ fontSize: "15px", my: 2, color: '#EBDBAE', display: 'block' }}
+                        >
+                            {page}
+                        </Button>)}
                     </Box>
 
-                    <Box sx={{flexGrow: 0}}>
+                    <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Girl with plant" src={profilePic}/>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <Avatar alt="Girl with plant" src={profilePic} />
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            sx={{mt: '45px'}}
+                            sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{
@@ -179,18 +182,28 @@ const Nav = () => {
                             {settings.map((setting, key) => <Link to={setting.routeTo || '#'}>
                                 <MenuItem key={key} onClick={() => {
                                     handleCloseNavMenu();
-                                    setting.callback && setting.callback()}
+                                    setting.callback && setting.callback()
+                                }
                                 }>
                                     <Typography textAlign="center">{setting.name}</Typography>
 
                                 </MenuItem>
 
-                                </Link>)}
+                            </Link>)}
 
-                            <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                            <button className="btn btn-lg bg-red btn-light m-2" style={{
+                                width: "96%",
+                                backgroundColor: "red",
+                                color: "white",
+                                fontSize: "18px",
+                                margin: "2px",
+                                outline: "none",
+                                border: "none",
+                                borderRadius: "13px"
+                            }} onClick={logout}>
                                 Logout
                             </button>
-                              </Menu>
+                        </Menu>
                     </Box>
                 </Toolbar>
             </Container>
@@ -202,7 +215,7 @@ const Nav = () => {
             aria-describedby="modal-modal-description"
         >
             <Login handleLoginModal={handleLoginModal.bind(this)}
-                   handleSignUp={handleSignUpModal.bind(this)}/>
+                handleSignUp={handleSignUpModal.bind(this)} />
         </Modal>
         <Modal
             open={signUpToggle}
@@ -210,7 +223,7 @@ const Nav = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <SignUp/>
+            <SignUp />
         </Modal>
     </>;
 };
