@@ -48,6 +48,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
+      alert(e);
     }
   };
 
