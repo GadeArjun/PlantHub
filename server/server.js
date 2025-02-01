@@ -4,7 +4,7 @@ const path = require('path');
 const routes = require('./routes'); // Your route logic
 const { typeDefs, resolvers } = require('./schemas'); // Your GraphQL schemas and resolvers
 const { authMiddleware } = require('./utils/auth'); // Your authentication middleware
-
+require("dotenv").config();
 const mongooseConnection = require('./config/connection'); // MongoDB connection function
 
 const PORT = process.env.PORT || 3001;
@@ -39,7 +39,7 @@ res.sendFile(path.join(__dirname, "public" , 'build' , "index.html"));
 });
 
 // Connect to MongoDB
-mongooseConnection().then(() => {
+mongooseConnection(process.env.MONGODB_URI).then(() => {
   // Start the Express server only after the MongoDB connection is established
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
