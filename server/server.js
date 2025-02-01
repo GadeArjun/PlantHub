@@ -13,7 +13,7 @@ const app = express();
 
 // Serve up static assets
 // app.use(express.static(path.join(__dirname, '../client/build')));
-app.use(express.static(path.join(__dirname, "public" , 'build')));
+app.use(express.static(path.join(__dirname, "./public/build")));
 
 
 
@@ -35,7 +35,7 @@ app.use(routes);
 
 app.use('*', (req, res) => {
   // res.sendFile(path.join(__dirname, '../client/build/index.html'));
-res.sendFile(path.join(__dirname, "public" , 'build' , "index.html"));
+res.sendFile(path.join(__dirname, "./public/build/index.html"));
 });
 
 // Connect to MongoDB
