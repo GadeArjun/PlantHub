@@ -12,11 +12,11 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Serve up static assets
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, "public" , 'build')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+
+
 
 // Apollo Server setup
 const server = new ApolloServer({
@@ -30,6 +30,13 @@ server.applyMiddleware({ app });
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(routes);
+
+
+
+app.use('*', (req, res) => {
+  // res.sendFile(path.join(__dirname, '../client/build/index.html'));
+res.sendFile(path.join(__dirname, "public" , 'build' , "index.html"));
+});
 
 // Connect to MongoDB
 mongooseConnection().then(() => {

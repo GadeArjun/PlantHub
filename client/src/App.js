@@ -24,8 +24,10 @@ import PlantFacts from './pages/PlantFacts'
 
 
 const httpLink = createHttpLink({
-    uri: 'https://super-duper-spoon-q7p5gp6wqrg7hpr5-3001.app.github.dev/graphql',
+    uri: '/graphql',
 });
+
+// https://super-duper-spoon-q7p5gp6wqrg7hpr5-3001.app.github.dev
 
 const authLink = setContext((_, { headers }) => {
     const token = localStorage.getItem('id_token');

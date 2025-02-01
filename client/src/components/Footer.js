@@ -30,9 +30,6 @@ const Footer = () => (
               <List.Item as={Link} to="/contact">
                 Contact Support
               </List.Item>
-              <List.Item as={Link} to="/team">
-                Meet the Team
-              </List.Item>
               <List.Item as={Link} to="/testimonials">
                 Testimonials
               </List.Item>
@@ -59,20 +56,20 @@ const Footer = () => (
             <Header inverted as="h4" content="Stay Connected" />
 
             <a
-              href="https://twitter.com/Planthub1"
+              href="/"
               target="_blank"
               rel="noreferrer"
             >
               <i className="fab fa-twitter-square fa-2x footer-icons"></i>
             </a>
             <a
-              href="https://www.instagram.com/planthub.uta/"
+              href="/"
               target="_blank"
               rel="noreferrer"
             >
               <i className="fab fa-instagram-square fa-2x footer-icons"></i>
             </a>
-            <a href="mailto:planthub.uta@gmail.com">
+            <a href="/">
               <i className="fas fa-envelope-open-text fa-2x footer-icons"></i>
             </a>
           </Grid.Column>
